@@ -1,0 +1,12 @@
+==== graphUniform_reattach @285 (x<=0.206) ====
+bestNeg [0.00435544, 0.17204], len=0.167685 m
+xr=0.172121 m, xr/H=6.776402
+
+==== graphUniform_reattach_y05mm @285 (x<=0.206) ====
+bestNeg [0.00435544, 0.169862], len=0.165507 m
+xr=0.170107 m, xr/H=6.697131
+
+==== graphUniform_reattach_y10mm @285 (x<=0.206) ====
+bestNeg [0.00399249, 0.168411], len=0.164419 m
+xr=0.168657 m, xr/H=6.640051
+

@@ -1,0 +1,24 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+Description
+    Writes graph data for specified fields along a line, specified by start and
+    end points. A specified number of graph points are used, distributed
+    uniformly along the line.
+
+\*---------------------------------------------------------------------------*/
+start   (0.0254 -0.0254 0);
+end     (0.0254  0.0254 0);
+nPoints 200;
+
+fields  (U);        // 일단 U만 뽑자 (헷갈림 최소화)
+axis    y;          // y좌표를 x축(독립변수)로 쓰게 해서 해석 쉽게
+
+
+#includeEtc "caseDicts/functions/graphs/graphUniform.cfg"
+
+// ************************************************************************* //

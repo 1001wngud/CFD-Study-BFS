@@ -1,0 +1,23 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      sampleDict;
+}
+
+interpolationScheme cellPoint;
+
+surfaceFormat raw;
+
+fields (wallShearStress);
+
+surfaces
+(
+    lowerWall_tau
+    {
+        type        patch;
+        patches     (lowerWall);
+        interpolate false;
+    }
+);

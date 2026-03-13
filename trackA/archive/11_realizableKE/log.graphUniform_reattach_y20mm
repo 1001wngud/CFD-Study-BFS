@@ -1,0 +1,39 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-cde978a97c93
+Exec   : foamPostProcess -solver incompressibleFluid -func graphUniform_reattach_y20mm -latestTime
+Date   : Feb 03 2026
+Time   : 21:53:14
+Host   : "JOO-DESKTOP"
+PID    : 13966
+I/O    : uncollated
+Case   : /home/joo/OpenFOAM/joo-13/run/portfolio_openfoam/trackA/00_pitzDailySteady
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 285
+
+Reading set description:
+    line
+
+Time = 285s
+Selecting solver incompressibleFluid
+Selecting viscosity model constant
+Selecting turbulence model type RAS
+    Selecting RAS turbulence model kEpsilon
+        Selecting generalised Newtonian model Newtonian
+No MRF models present
+
+
+End
+

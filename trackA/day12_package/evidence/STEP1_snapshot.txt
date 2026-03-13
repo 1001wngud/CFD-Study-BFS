@@ -1,0 +1,120 @@
+=== DATE ===
+Fri Feb  6 23:47:39 KST 2026
+
+=== HOST / OS ===
+Linux JOO-DESKTOP 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+
+=== OpenFOAM Version ===
+
+=== CASE: 00_pitzDailySteady ===
+[PWD] /home/joo/OpenFOAM/joo-13/run/portfolio_openfoam/trackA/00_pitzDailySteady
+[latestTimes]
+100
+200
+285
+
+[momentumTransport key lines]
+17:simulationType RAS;
+19:RAS
+23:    model           kEpsilon;
+
+[log.foamRun tail]
+
+Time = 283s
+
+smoothSolver:  Solving for Ux, Initial residual = 0.000132163, Final residual = 1.29232e-05, No Iterations 5
+smoothSolver:  Solving for Uy, Initial residual = 0.00108586, Final residual = 7.20684e-05, No Iterations 6
+GAMG:  Solving for p, Initial residual = 0.00156359, Final residual = 0.000143814, No Iterations 3
+time step continuity errors : sum local = 0.00609788, global = -0.000523682, cumulative = 0.556781
+smoothSolver:  Solving for epsilon, Initial residual = 0.000142769, Final residual = 9.0675e-06, No Iterations 3
+smoothSolver:  Solving for k, Initial residual = 0.000232675, Final residual = 1.42623e-05, No Iterations 4
+ExecutionTime = 5.57087 s  ClockTime = 6 s
+
+Time = 284s
+
+smoothSolver:  Solving for Ux, Initial residual = 0.000127676, Final residual = 1.26058e-05, No Iterations 5
+smoothSolver:  Solving for Uy, Initial residual = 0.0010319, Final residual = 6.981e-05, No Iterations 6
+GAMG:  Solving for p, Initial residual = 0.00131556, Final residual = 0.00012283, No Iterations 4
+time step continuity errors : sum local = 0.00520864, global = 0.000614958, cumulative = 0.557396
+smoothSolver:  Solving for epsilon, Initial residual = 0.00014159, Final residual = 8.97856e-06, No Iterations 3
+smoothSolver:  Solving for k, Initial residual = 0.000227002, Final residual = 1.38911e-05, No Iterations 4
+ExecutionTime = 5.58845 s  ClockTime = 6 s
+
+Time = 285s
+
+smoothSolver:  Solving for Ux, Initial residual = 0.000122524, Final residual = 1.21333e-05, No Iterations 5
+smoothSolver:  Solving for Uy, Initial residual = 0.000992942, Final residual = 6.75593e-05, No Iterations 6
+GAMG:  Solving for p, Initial residual = 0.00123295, Final residual = 0.000112114, No Iterations 4
+time step continuity errors : sum local = 0.0047489, global = 0.000564888, cumulative = 0.55796
+smoothSolver:  Solving for epsilon, Initial residual = 0.000139397, Final residual = 8.97324e-06, No Iterations 3
+smoothSolver:  Solving for k, Initial residual = 0.000221974, Final residual = 1.35975e-05, No Iterations 4
+ExecutionTime = 5.60688 s  ClockTime = 6 s
+
+
+SIMPLE solution converged in 285 iterations
+
+streamlines streamlines write:
+    Seeded 10 particles
+    Sampled 12040 locations
+
+End
+
+
+=== CASE: 11_kOmegaSST ===
+[PWD] /home/joo/OpenFOAM/joo-13/run/portfolio_openfoam/trackA/11_kOmegaSST
+[latestTimes]
+100
+200
+300
+400
+500
+600
+685
+
+[momentumTransport key lines]
+17:simulationType RAS;
+19:RAS
+23:    model           kOmegaSST;
+
+[log.foamRun tail]
+
+Time = 683s
+
+smoothSolver:  Solving for Ux, Initial residual = 8.57812e-05, Final residual = 8.0306e-06, No Iterations 4
+smoothSolver:  Solving for Uy, Initial residual = 0.00103124, Final residual = 7.09836e-05, No Iterations 5
+GAMG:  Solving for p, Initial residual = 0.00268374, Final residual = 0.0002428, No Iterations 2
+time step continuity errors : sum local = 0.00894891, global = -0.00113003, cumulative = -3.68385
+smoothSolver:  Solving for omega, Initial residual = 0.000342694, Final residual = 8.97772e-06, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000485325, Final residual = 3.85931e-05, No Iterations 2
+ExecutionTime = 13.9578 s  ClockTime = 14 s
+
+Time = 684s
+
+smoothSolver:  Solving for Ux, Initial residual = 8.33379e-05, Final residual = 7.62781e-06, No Iterations 4
+smoothSolver:  Solving for Uy, Initial residual = 0.00101801, Final residual = 6.9054e-05, No Iterations 5
+GAMG:  Solving for p, Initial residual = 0.00278939, Final residual = 0.000248225, No Iterations 2
+time step continuity errors : sum local = 0.00915662, global = -0.00117864, cumulative = -3.68503
+smoothSolver:  Solving for omega, Initial residual = 0.000387534, Final residual = 1.15456e-05, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000489208, Final residual = 3.7766e-05, No Iterations 2
+ExecutionTime = 13.9767 s  ClockTime = 14 s
+
+Time = 685s
+
+smoothSolver:  Solving for Ux, Initial residual = 8.0765e-05, Final residual = 7.26576e-06, No Iterations 4
+smoothSolver:  Solving for Uy, Initial residual = 0.000978239, Final residual = 6.66994e-05, No Iterations 5
+GAMG:  Solving for p, Initial residual = 0.00285536, Final residual = 0.0002572, No Iterations 2
+time step continuity errors : sum local = 0.00948439, global = -0.00116478, cumulative = -3.68619
+smoothSolver:  Solving for omega, Initial residual = 0.000365769, Final residual = 8.85353e-06, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000458195, Final residual = 3.64877e-05, No Iterations 2
+ExecutionTime = 13.9952 s  ClockTime = 14 s
+
+
+SIMPLE solution converged in 685 iterations
+
+streamlines streamlines write:
+    Seeded 10 particles
+    Sampled 12035 locations
+
+End
+
+

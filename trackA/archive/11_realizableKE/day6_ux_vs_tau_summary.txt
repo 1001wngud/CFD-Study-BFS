@@ -1,0 +1,7 @@
+t=285
+H=0.0254
+xr_tau/H=6.760
+
+graphUniform_reattach : xr_Ux=0.1721206217  xr_Ux/H=6.776
+graphUniform_reattach_y05mm : xr_Ux=0.1701071318  xr_Ux/H=6.697
+graphUniform_reattach_y10mm : xr_Ux=0.168657305  xr_Ux/H=6.640

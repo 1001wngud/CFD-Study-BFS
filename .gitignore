@@ -1,0 +1,13 @@
+﻿# Windows / macOS metadata
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Windows alternate data streams downloaded with files
+**/*Zone.Identifier*
+
+# Local editor settings
+.vscode/
+
+# Packaged release duplicates
+trackA/release/

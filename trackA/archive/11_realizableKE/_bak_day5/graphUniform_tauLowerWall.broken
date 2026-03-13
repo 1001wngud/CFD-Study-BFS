@@ -1,0 +1,20 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           |
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+
+fields      (wallShearStress);
+
+# line: x = 0 ~ 0.29, y = lower wall + epsilon(inside), z=0
+start       (0      -0.025399 0);
+end         (0.29   -0.025399 0);
+nPoints     800;
+
+axis        x;
+
+#includeEtc "caseDicts/functions/graphs/graphUniform.cfg"
+
+// ************************************************************************* //

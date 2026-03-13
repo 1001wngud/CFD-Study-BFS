@@ -1,0 +1,45 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-cde978a97c93
+Exec   : foamPostProcess -solver incompressibleFluid -func wallShearStress -latestTime
+Date   : Feb 05 2026
+Time   : 20:36:32
+Host   : "JOO-DESKTOP"
+PID    : 23654
+I/O    : uncollated
+Case   : /home/joo/OpenFOAM/joo-13/run/portfolio_openfoam/trackA/11_kOmegaSST
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 685
+
+wallShearStress wallShearStress:
+    processing wall patches: 
+        lowerWall
+
+Time = 685s
+Selecting solver incompressibleFluid
+Selecting viscosity model constant
+Selecting turbulence model type RAS
+    Selecting RAS turbulence model kOmegaSST
+        Selecting generalised Newtonian model Newtonian
+No MRF models present
+
+Selecting patchDistMethod meshWave
+wallShearStress wallShearStress write:
+    writing object wallShearStress
+    min/max(lowerWall) = (-0.613735 -0.0551167 -5.63601e-18), (0.0779191 0.00690217 4.21057e-18)
+
+
+End
+

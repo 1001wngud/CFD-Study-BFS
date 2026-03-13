@@ -1,0 +1,10 @@
+=== quick counts ===
+--- day12_package ---
+png: 1
+pdf: 0
+--- 00_pitzDailySteady ---
+png: 12
+pdf: 0
+--- 11_kOmegaSST ---
+png: 11
+pdf: 0

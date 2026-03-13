@@ -1,0 +1,22 @@
+---- time=600 (x<=0.206) ----
+graphUniform_reattach
+bestNeg [0.0199625, 0.201439], len=0.181477 m
+xr=0.201735 m, xr/H=7.942307
+graphUniform_reattach_y05mm
+bestNeg [0.0192365, 0.199262], len=0.180026 m
+xr=0.199519 m, xr/H=7.855078
+graphUniform_reattach_y10mm
+bestNeg [0.0177847, 0.197447], len=0.179662 m
+xr=0.19768 m, xr/H=7.782667
+
+---- time=685 (x<=0.206) ----
+graphUniform_reattach
+bestNeg [0.0185106, 0.201439], len=0.182928 m
+xr=0.201594 m, xr/H=7.936759
+graphUniform_reattach_y05mm
+bestNeg [0.0185106, 0.199262], len=0.180751 m
+xr=0.199384 m, xr/H=7.849779
+graphUniform_reattach_y10mm
+bestNeg [0.0170588, 0.196721], len=0.179662 m
+xr=0.196835 m, xr/H=7.749403
+

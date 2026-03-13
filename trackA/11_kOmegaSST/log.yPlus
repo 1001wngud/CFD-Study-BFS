@@ -1,0 +1,83 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-cde978a97c93
+Exec   : foamPostProcess -solver incompressibleFluid -func yPlus
+Date   : Jan 30 2026
+Time   : 09:41:39
+Host   : "JOO-DESKTOP"
+PID    : 16316
+I/O    : uncollated
+Case   : /home/joo/OpenFOAM/joo-13/run/portfolio_openfoam/trackA/00_pitzDailySteady
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Time = 0s
+Selecting solver incompressibleFluid
+Selecting viscosity model constant
+Selecting turbulence model type RAS
+    Selecting RAS turbulence model kEpsilon
+        Selecting generalised Newtonian model Newtonian
+No MRF models present
+
+yPlus yPlus write:
+    writing object yPlus
+    patch upperWall y+ : min = 2.85758, max = 7.0481, average = 5.81862
+    patch lowerWall y+ : min = 5.34712, max = 18.9199, average = 15.3925
+
+
+Time = 100s
+Selecting solver incompressibleFluid
+Selecting viscosity model constant
+Selecting turbulence model type RAS
+    Selecting RAS turbulence model kEpsilon
+        Selecting generalised Newtonian model Newtonian
+No MRF models present
+
+yPlus yPlus write:
+    writing object yPlus
+    patch upperWall y+ : min = 2.85041, max = 7.62261, average = 6.09754
+    patch lowerWall y+ : min = 1.59872, max = 33.571, average = 20.1757
+
+
+Time = 200s
+Selecting solver incompressibleFluid
+Selecting viscosity model constant
+Selecting turbulence model type RAS
+    Selecting RAS turbulence model kEpsilon
+        Selecting generalised Newtonian model Newtonian
+No MRF models present
+
+yPlus yPlus write:
+    writing object yPlus
+    patch upperWall y+ : min = 3.02753, max = 7.25318, average = 6.07561
+    patch lowerWall y+ : min = 0.56582, max = 27.4072, average = 16.9044
+
+
+Time = 285s
+Selecting solver incompressibleFluid
+Selecting viscosity model constant
+Selecting turbulence model type RAS
+    Selecting RAS turbulence model kEpsilon
+        Selecting generalised Newtonian model Newtonian
+No MRF models present
+
+yPlus yPlus write:
+    writing object yPlus
+    patch upperWall y+ : min = 2.81958, max = 7.24192, average = 6.08872
+    patch lowerWall y+ : min = 0.338914, max = 26.5171, average = 16.0754
+
+
+End
+

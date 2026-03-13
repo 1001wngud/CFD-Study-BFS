@@ -1,0 +1,53 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-cde978a97c93
+Exec   : foamPostProcess -solver incompressibleFluid -time 285 -funcs (wallShearStress graphUniform_tauLowerWall graphUniform_reattach_y05mm graphUniform_reattach_y10mm)
+Date   : Feb 02 2026
+Time   : 23:48:21
+Host   : "JOO-DESKTOP"
+PID    : 186641
+I/O    : uncollated
+Case   : /home/joo/OpenFOAM/joo-13/run/portfolio_openfoam/trackA/00_pitzDailySteady
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 285
+
+wallShearStress wallShearStress:
+    processing all wall patches
+
+Reading set description:
+    line
+
+Reading set description:
+    line
+
+Reading set description:
+    line
+
+Time = 285s
+Selecting solver incompressibleFluid
+Selecting viscosity model constant
+Selecting turbulence model type RAS
+    Selecting RAS turbulence model kEpsilon
+        Selecting generalised Newtonian model Newtonian
+No MRF models present
+
+wallShearStress wallShearStress write:
+    writing object wallShearStress
+    min/max(upperWall) = (-0.469971 -0.0436448 -2.5536e-17), (-0.156361 0.0424164 1.5731e-17)
+    min/max(lowerWall) = (-0.6122 -0.129635 -5.77782e-18), (0.0915311 0.0738913 4.4785e-18)
+
+
+End
+

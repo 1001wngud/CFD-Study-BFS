@@ -1,0 +1,9 @@
+type            wallShearStress;
+libs            ("libfieldFunctionObjects.so");
+
+patches         (lowerWall);
+
+writeControl    writeTime;
+writeFields     true;
+writeToFile     true;
+log             true;

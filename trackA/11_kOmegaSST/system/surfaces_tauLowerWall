@@ -1,0 +1,20 @@
+type                surfaces;
+libs                ("libsampling.so");
+
+writeControl         writeTime;
+
+fields              (wallShearStress);
+
+surfaceFormat        raw;
+interpolationScheme  cellPoint;
+
+surfaces
+(
+    lowerWallPatch
+    {
+        type        patch;
+        patches     (lowerWall);
+        triangulate no;
+        interpolate yes;
+    }
+);
