@@ -14,6 +14,16 @@
 
 메인 작업 디렉터리는 [`trackA/`](trackA)다.
 
+## BFS 개요
+
+Backward-facing step(BFS)은 sudden expansion 뒤에서 박리, 재순환, 재부착이 연속적으로 나타나는 대표적인 benchmark 유동이다. 그래서 단순히 속도장을 보는 것보다, 분리 버블의 끝이 어디인지, 즉 재부착 길이 `xr/H`를 어떻게 정의하고 안정적으로 추출할 것인지가 핵심이 된다.
+
+![BFS schematic](trackA/figure/image03.png)
+
+![BFS flow sketch](trackA/figure/image04.png)
+
+이 프로젝트에서는 BFS를 설명하는 개념도와 유동 스케치를 먼저 제시한 뒤, 실제 OpenFOAM tutorial case에서 그 현상을 어떻게 측정 가능한 QoI로 바꿨는지를 보여주는 흐름으로 문서를 구성했다.
+
 ## 프로젝트 한 줄 요약
 
 `pitzDailySteady`의 BFS 유동에서 near-wall line sampling과 후처리 파이프라인을 이용해 `xr/H`를 추출했고, `kOmegaSST`가 `kEpsilon`보다 약 16.7~17.2% 더 긴 재부착 길이를 예측함을 확인했다.
@@ -30,26 +40,65 @@
 - variant: `trackA/11_kOmegaSST` with `kOmegaSST`
 - exploratory archive: `trackA/archive/11_realizableKE`
 
-## 무엇을 검증했는가
+### Geometry and Mesh
 
-### 1. QoI 정의
+이 케이스는 `frontAndBack`를 `empty`로 둔 quasi-2D BFS 해석이다. 실제 계산은 2D로 해석하지만, blockMesh 관점에서는 얇은 z-두께를 가진 extrusion 형태로 구성되어 있기 때문에 mesh 설명에는 3D view가 더 직관적이다.
 
-이 프로젝트의 QoI는 무차원 재부착 길이 `xr/H`다.
+![3D mesh view](trackA/figure/image02.png)
 
-재부착 위치 `xr`는 lower wall 바로 위에서 추출한 `Ux(x)` 라인 데이터에서 계산했다. 단순히 첫 번째 zero-crossing을 쓰지 않고, `Ux < 0`인 역류 구간들 중에서 가장 긴 구간을 주 재순환 버블(primary recirculation)로 간주하고, 그 구간의 downstream `Ux = 0` 교차점을 선형 보간으로 계산했다.
+- `convertToMeters 0.001`
+- step edge 기준 `x = 0`
+- taper 시작 `x = 206 mm = 0.206 m`
+- outlet `x = 290 mm = 0.29 m`
+- step height `H = 25.4 mm = 0.0254 m`
+
+## 유동 관찰과 QoI 정의
+
+### x/H별 수직 속도 프로파일
+
+재부착 길이만 바로 뽑기 전에, BFS에서 유동이 실제로 어떻게 회복되는지 보기 위해 `x/H = 1, 4, 6, 10` 위치의 `Ux(y)` 프로파일을 확인했다. 이 그림은 스텝 직후의 역류와 shear layer가 downstream으로 갈수록 어떻게 줄어드는지를 직관적으로 보여준다.
+
+![Ux profiles at x/H locations](trackA/figure/image05.png)
+
+이 단계는 이후 `xr/H`가 어디쯤 형성될지 감을 잡는 용도이기도 하고, NASA TMR이나 canonical BFS 자료에서 자주 쓰는 비교 위치와 맞물린다는 점에서도 의미가 있다.
+
+### 메인 QoI: near-wall `Ux = 0` 기반 재부착점
+
+이 프로젝트의 메인 QoI는 무차원 재부착 길이 `xr/H`다. 재부착 위치 `xr`는 lower wall 바로 위에서 추출한 `Ux(x)` 라인 데이터에서 계산했다. 단순히 첫 번째 zero-crossing을 쓰지 않고, `Ux < 0`인 역류 구간들 중에서 가장 긴 구간을 주 재순환 버블(primary recirculation)로 간주하고, 그 구간의 downstream `Ux = 0` 교차점을 선형 보간으로 계산했다.
+
+![Reattachment line and interpolation](trackA/figure/image06.png)
 
 이 규칙을 택한 이유는 작은 국소 포켓이나 잡음 때문에 잘못된 교차점을 재부착점으로 잡는 것을 피하기 위해서다.
 
-### 2. 정의 기반 교차 검증
+### 샘플링 높이 민감도
 
-재부착의 정식 정의는 wall shear stress의 부호 변화, 즉 `tau_w = 0` 지점이다. 그래서 이 프로젝트에서는 다음 두 기준을 분리해서 다뤘다.
+벽 바로 위 한 줄에서만 재부착을 정의하면, 라인의 위치에 따라 결과가 흔들릴 수 있다. 그래서 wall-adjacent line뿐 아니라 `y = 0.5 mm`, `y = 1.0 mm`에서도 같은 규칙으로 `xr/H`를 다시 계산해 결과가 얼마나 변하는지 확인했다.
 
-- 메인 QoI: near-wall `Ux = 0` 기반 `xr/H`
-- 교차 검증: lower wall `tau_w = 0` 기반 재부착 위치
+![Near-wall Ux comparison at y=0.5 and 1.0 mm](trackA/figure/image07.png)
+
+추가로 여러 sampling height를 한 번에 비교해 보면, line을 위로 올릴수록 역류가 더 빨리 사라지고 zero-crossing이 upstream으로 이동하는 경향이 보인다.
+
+![Ux(x) at multiple sampling heights](trackA/figure/image08.png)
+
+이를 재부착 길이 추정값으로 요약하면, sampling height가 커질수록 `xr/H`가 감소하는 추세가 뚜렷하게 나타난다.
+
+![Reattachment estimate versus sampling height](trackA/figure/image09.png)
+
+정규화한 `Ux` 라인 비교를 통해서도 wall-adjacent, `y=0.5 mm`, `y=1.0 mm`의 shape 차이와 zero-crossing 이동을 같은 그림에서 확인할 수 있다.
+
+![Normalized Ux comparison across sampling lines](trackA/figure/image11.png)
+
+즉, near-wall `Ux = 0` 교차는 유용한 QoI 추정값이지만, 정의 자체는 아니며 sampling height에 따라 체계적으로 이동할 수 있다는 점을 분리해서 해석해야 한다.
+
+### 정의 기반 교차 검증: `tau_w = 0`
+
+재부착의 정식 정의는 wall shear stress의 부호 변화, 즉 `tau_w = 0` 지점이다. 그래서 이 프로젝트에서는 메인 QoI는 near-wall `Ux = 0` 기반으로 유지하되, lower wall의 `tau_w = 0` 지점을 별도로 구해 두 값이 얼마나 일치하는지 확인했다.
+
+![Wall shear stress based reattachment](trackA/figure/image10.png)
 
 baseline case에서는 `tau_w = 0` 기반 `xr/H = 6.760`이 나왔고, near-wall `Ux` 기반 `xr/H = 6.776`과 매우 가깝게 맞았다. 따라서 메인 QoI 정의가 물리적으로도 납득 가능하다고 판단했다.
 
-### 3. 강건성 점검
+### 강건성 점검
 
 결과를 숫자 하나로 끝내지 않고 다음 세 가지를 별도로 확인했다.
 
@@ -107,41 +156,22 @@ baseline case의 최종 `yPlus` 통계는 다음과 같다.
 
 이 값은 전 구간이 전형적인 high-Re wall function 범위에 있다고 보기 어렵다. 그래서 이 프로젝트에서는 `yPlus`를 단독 품질 판정 기준으로 사용하지 않고, separation/reattachment 문제에서 `tau_w -> 0`에 따라 `yPlus`가 낮아질 수 있다는 점을 함께 고려했다. 실제로 lower wall `wallShearStress`는 patch 내부에서 부호가 바뀌었고, 이는 separation bubble 존재와 일치한다.
 
-## 대표 그림
-
-### Geometry / case framing
-
-![Case schematic](trackA/deliverables/fig/Fig06_case_schematic.png)
-
-### Main comparison
-
-![Model comparison](trackA/deliverables/fig/Fig03_xrH_model_comparison.png)
-
-### y-offset sensitivity
-
-![Sensitivity](trackA/deliverables/fig/Fig04_xrH_vs_y_sensitivity.png)
-
-### Near-wall Ux evidence
-
-![SST Ux lines](trackA/deliverables/fig/Fig01_SST_Ux_lines_t685.png)
-
-추가 그림은 `trackA/deliverables/fig/`와 `trackA/deliverables/fig/FIGURE_INDEX.md`에서 확인할 수 있다.
-
 ## 저장소 구성
 
 ```text
-portfolio_openfoam/
+CFD-Study-BFS/
 └─ trackA/
    ├─ 00_pitzDailySteady/        # baseline case (kEpsilon)
    ├─ 11_kOmegaSST/              # model-variant case (kOmegaSST)
    ├─ archive/
    │  └─ 11_realizableKE/        # exploratory case, main comparison outside
    ├─ day12_package/             # tables, scripts, evidence, report
-   ├─ deliverables/              # curated figures and one-page summary
-   └─ day13_fig_curation/        # figure inventory / curation notes
+   ├─ deliverables/              # packaged outputs and summary docs
+   ├─ figure/                    # README용 figure assets (image01~image11)
+   └─ day13_fig_curation/        # curation notes from earlier packaging step
 ```
 
-GitHub 정리 과정에서 `trackA/release/` 같은 중복 패키지 산출물과 Windows `Zone.Identifier` 메타데이터 파일은 제거했다.
+GitHub 정리 과정에서 중복 패키지 산출물과 Windows `Zone.Identifier` 메타데이터 파일은 제거했다.
 
 ## 재현 방법
 
