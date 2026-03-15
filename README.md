@@ -1,4 +1,4 @@
-﻿# OpenFOAM BFS Portfolio
+﻿# OpenFOAM BFS Reattachment
 
 ## Reattachment-Length Extraction Pipeline and Turbulence-Model Sensitivity on `pitzDailySteady`
 
